@@ -15,23 +15,26 @@ public class NumberWizardController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
             min = guess;
+            NextGuess();
             PrintGuess();
         }
         else if(Input.GetKeyDown(KeyCode.DownArrow))
         {
             max = guess;
+            NextGuess();
             PrintGuess();
         }
         else if(Input.GetKeyDown(KeyCode.Return))
         {
             print("I won!");
+            StartGame();
         }
     }
     
     void StartGame()
     {
         min = 1;
-        max = 1001;
+        max = 1000;
         guess = 500;
 
         print("Welcome to Number Wizard!");
@@ -39,14 +42,19 @@ public class NumberWizardController : MonoBehaviour
 
         print("The lowest number you can choose is: " + min);
         print("The highest number you can pick is : " + max);
+        max++;
 
         PrintGuess();
     }
 
     void PrintGuess()
     {
-        guess = (max + min) / 2;
         print("Is your number higher or lower than " + guess + "?");
         print("Up = higher, down = lower, return = equal.");
+    }
+
+    void NextGuess()
+    {
+        guess = (max + min) / 2;
     }
 }
